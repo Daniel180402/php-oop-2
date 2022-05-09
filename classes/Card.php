@@ -16,7 +16,7 @@ class Card {
         }
         $this->ownerFullName = $ownerFullName;
         $this->number = $number;
-        $this->expireDate = date("YY-mm-dd", "$year-$month-$day");
+        $this->expireDate = DateTime::createFromFormat("Y-m-d", "$year-$month-$day");
         $this->cvc = $cvc;
     }
 
@@ -57,6 +57,6 @@ class Card {
      * @return bool
      */
     public function isExpired(): bool {
-        return $this->expireDate < date("YY-mm-dd");
+        return $this->expireDate < new DateTime();
     }
 }
